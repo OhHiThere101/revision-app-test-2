@@ -40,7 +40,7 @@ const LearnPage = () => {
               <p className="text-gray-400 text-xs">9th Grade Physics</p>
             </div>
 
-            <div className="flex flex-row items-center align-middle">
+            <div className="flex flex-row items-center">
               <p className="text-green-500 text-md">7% Completed</p>
               <svg className="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                 <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m9 5 7 7-7 7" />
