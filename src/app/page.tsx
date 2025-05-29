@@ -3,7 +3,7 @@ import ResponsiveBottomNavbar from "@/components/ResponsiveBottomNavbar";
 const LandingPage = () => {
   return (
     
-    <div className="flex flex-col">
+    <div className="">
 
       <h1>Welcome to the landing page nig</h1>
 
