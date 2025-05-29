@@ -1,10 +1,10 @@
 import React from "react";
-import BottomNavbar from "@/components/BottomNavbar";
+import ResponsiveBottomNavbar from "@/components/ResponsiveBottomNavbar";
 
 const LearnPage = () => {
   return (
 
-    <div className="flex flex-col pb-[70px]">
+    <div className="flex flex-col pb-[45px]">
 
       <h1 className="text-2xl font-bold m-3">Jump back in</h1>
 
@@ -240,7 +240,7 @@ const LearnPage = () => {
 
         </div>
 
-      <BottomNavbar />
+      <ResponsiveBottomNavbar />
 
     </div>
 

@@ -1,4 +1,4 @@
-import BottomNavbar from "@/components/BottomNavbar";
+import ResponsiveBottomNavbar from "@/components/ResponsiveBottomNavbar";
 
 const LandingPage = () => {
   return (
@@ -7,7 +7,7 @@ const LandingPage = () => {
 
       <h1>Welcome to the landing page nig</h1>
 
-      <BottomNavbar />
+      <ResponsiveBottomNavbar />
 
     </div>
 
