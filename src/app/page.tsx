@@ -1,19 +1,18 @@
 import BottomNavbar from "@/components/BottomNavbar";
 
-const Home = () => {
+const LandingPage = () => {
   return (
     
     <div className="flex flex-col">
 
-      <body>
-        <h1>Welcome to an unfinished page nig</h1>
-      </body>
+      <h1>Welcome to the landing page nig</h1>
 
       <BottomNavbar />
 
     </div>
+
   );
 }
 
 
-export default Home;
+export default LandingPage;
