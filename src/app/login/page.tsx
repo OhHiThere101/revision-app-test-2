@@ -1,14 +1,21 @@
 "use client";
 
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const router = useRouter();
+
+  const handleSignIn = (e: React.FormEvent) => {
+    e.preventDefault();
+    router.push("/profile");
+  };
 
   return (
 
-    <div className="min-h-screen flex flex-col justify-center items-center px-4">
-      <form className="w-full max-w-sm flex flex-col gap-6">
+    <div className="max-h-screen flex flex-col justify-center items-center px-4">
+      <form className="w-full max-w-sm flex flex-col gap-6" onSubmit={handleSignIn}>
         <h1 className="text-4xl font-bold text-white text-center mb-10 mt-8">Sign in</h1>
 
         {/* Username */}
@@ -23,7 +30,7 @@ const LoginPage = () => {
 
           {/* Cut-out line behind the label */}
           <div
-            className="absolute -top-[0px] left-[10px] bg-[#18171D] z-10 w-[75px] h-[1px]"
+            className="absolute -top-[0px] left-[10px] bg-[#18171D] z-10 w-[78px] h-[1px]"
           />
           <label
             htmlFor="username"
@@ -45,7 +52,7 @@ const LoginPage = () => {
 
           {/* Cut-out line behind the label */}
           <div
-            className="absolute -top-[0px] left-[10px] bg-[#18171D] z-10 w-[70px] h-[1px]"
+            className="absolute -top-[0px] left-[10px] bg-[#18171D] z-10 w-[73px] h-[1px]"
           />
           <label
             htmlFor="password"
@@ -59,6 +66,8 @@ const LoginPage = () => {
             type="button"
             className="absolute right-2 top-1/3 -translate-y-1/2 text-gray-400 z-30"
             onClick={() => setShowPassword((v) => !v)}
+            tabIndex={-1}
+            onMouseDown={e => e.preventDefault()}
           >
             {showPassword ?
             (
