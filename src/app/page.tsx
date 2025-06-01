@@ -6,11 +6,15 @@ const HomePage = () => {
 
     <div className="pb-[45px]">
 
-      <h1 className="text-xl font-bold m-3">Jump back in</h1>
+
+    <div className="m-3">
+        <span className="text-2xl font-bold ml-1">Jump back in</span>
+        <span className="text-xs ml-3 text-gray-400"><a href="/continue">{"See More>"}</a></span>
+    </div>
 
       <div className="grid gap-4 m-3">
 
-        <div className="flex flex-row items-center justify-end h-24 bg-[#3A3A40] rounded-[6px] shadow-md">
+        <div className="flex flex-row items-center justify-end h-20 bg-[#3A3A40] rounded-[6px] shadow-md">
 
           <div className="bg-[#2A2930] w-full h-full px-3 py-2 rounded-[6px] shadow-md">
 
@@ -37,7 +41,7 @@ const HomePage = () => {
 
         </div>
 
-        <div className="flex flex-row items-center justify-end h-24 bg-[#3A3A40] rounded-[6px] shadow-md">
+        <div className="flex flex-row items-center justify-end h-20 bg-[#3A3A40] rounded-[6px] shadow-md">
 
           <div className="bg-[#2A2930] w-full h-full px-3 py-2 rounded-[6px] shadow-md">
 
@@ -51,7 +55,7 @@ const HomePage = () => {
               <div>
                 <p className="text-green-500 text-md">13% Completed</p>
                 <div className="bg-gray-200 rounded-full h-3 my-[1px] dark:bg-gray-700">
-                  <div className="bg-linear-to-r from-[#58CA88] to-[#BC48FF] h-3 rounded-full w-[69%]"></div>
+                  <div className="bg-linear-to-r from-[#58CA88] to-[#BC48FF] h-3 rounded-full w-[13%]"></div>
                 </div>
               </div>
               

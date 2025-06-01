@@ -17,7 +17,7 @@ const ProfilePage = ({
     playtime,
 }: ProfilePageProps) => {
     return (
-        <div className="bg-[#0f0f12] min-h-screen flex flex-col text-white font-sans">
+        <div className="bg-[#18171D] min-h-screen flex flex-col text-white font-sans">
             {/* Profile content */}
             <div className="flex-1 p-4 w-full">
                 {/* Profile section */}
