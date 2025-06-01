@@ -9,7 +9,7 @@ type ProfilePageProps = {
     playtime: number;
 };
 
-const ProfilePage = ({
+const ProfilePageLayout = ({
     displayName,
     username,
     joinedDate,
@@ -17,7 +17,7 @@ const ProfilePage = ({
     playtime,
 }: ProfilePageProps) => {
     return (
-        <div className="bg-[#18171D] min-h-screen flex flex-col text-white font-sans">
+        <div className="bg-[#18171D] max-h-screen flex flex-col text-white">
             {/* Profile content */}
             <div className="flex-1 p-4 w-full">
                 {/* Profile section */}
@@ -99,9 +99,9 @@ const StatBlock = ({ title, progress, accuracy, playtime }: StatBlockProps) => {
     );
   };
 
-const App = () => {
+const ProfilePage = () => {
     return (
-        <ProfilePage
+        <ProfilePageLayout
             displayName="nigga"
             username="tungtungtungsahur"
             joinedDate="June 2025"
@@ -111,4 +111,4 @@ const App = () => {
     );
 };
 
-export default App;
+export default ProfilePage;
