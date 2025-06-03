@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 interface StatsProps {
     subject?: string;
     lessonsCompleted?: number;
@@ -44,6 +46,13 @@ export default function StatsBlock({
                         </div>
                     </div>
                 ))}
+            </div>
+            <div className="flex flex-row-reverse items-center mt-6">
+                <Link href="/profile/subject_statistic/statistic/page.tsx">
+                    <button className=" hover:bg-gray-600 px-6 py-2 rounded-full text-sm transition">
+                        see more
+                    </button>
+                </Link>
             </div>
         </div>
     );
