@@ -2,6 +2,20 @@ import React from "react";
 import ResponsiveBottomNavbar from "@/components/ResponsiveBottomNavbar";
 
 const HomePage = () => {
+
+  const subjects = [
+    { name: "Mathematics"},
+    { name: "Physics"},
+    { name: "Chemistry"},
+    { name: "Biology"},
+    { name: "History"},
+    { name: "English"},
+    { name: "Computer Science"},
+    { name: "Economics"},
+    { name: "Psychology"},
+    { name: "Sociology"},
+  ]
+
   return (
 
     <div className="pb-[45px]">
@@ -9,10 +23,10 @@ const HomePage = () => {
 
     <div className="m-3">
         <span className="text-2xl font-bold ml-1">Jump back in</span>
-        <span className="text-xs ml-3 text-gray-400"><a href="/continue">{"See More>"}</a></span>
+        <span className="text-xs ml-3 text-gray-400"><a href="/continue">{"See More >"}</a></span>
     </div>
 
-      <div className="grid gap-4 m-3">
+      <div className="grid gap-3 m-3">
 
         <div className="flex flex-row items-center justify-end h-20 bg-[#3A3A40] rounded-[6px] shadow-md">
 
@@ -71,23 +85,24 @@ const HomePage = () => {
       </div>
 
 
+      {/* Seperation line */}
       <hr className="border-t-2 border-gray-600 my-4 mx-3" />
 
 
       <h2 className="text-2xl font-bold m-3">Subjects</h2>
 
-      <div className="grid grid-cols-2 gap-4 m-3">
-
-        <div className="flex flex-row bg-gray-800 px-3 h-20 rounded-[6px] shadow-md items-center justify-between">
-
-          <p className="text-xl font-semibold">Mathematics</p>
-
-          <svg className="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-            <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m9 5 7 7-7 7" />
-          </svg>
-
-        </div>
-
+      <div className="overflow-x-auto flex space-x-3 px-3 snap-x snap-mandatory hide-scrollbar">
+        {subjects.map((subject, idx) => (
+          <div
+            key={idx}
+            className="min-w-[150px] min-h-[150px] flex-shrink-0 bg-[#3A3A40] rounded-[6px] shadow-md snap-center"
+          >
+            {/* Subject card content here */}
+            <div className="flex flex-col justify-center items-center align-middle h-full">
+              <p className="text-xl font-semibold">{subject.name}</p>
+            </div>
+          </div>
+        ))}
       </div>
 
       <ResponsiveBottomNavbar />
