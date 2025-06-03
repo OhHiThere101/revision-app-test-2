@@ -22,6 +22,13 @@ const ProfilePageLayout = ({
 }: ProfilePageProps) => {
     return (
         <div className="max-h-screen flex flex-col text-white">
+            <div className="flex flex-row-reverse mt-3 mb-15 mr-3">
+                <Link href="/setting">
+                    <button className="bg-gray-700 hover:bg-gray-600 text-white px-6 py-2 rounded-full text-sm transition">
+                        Setting
+                    </button>
+                </Link>
+            </div>
             {/* Profile content */}
             <div className="flex-1 p-4 w-full">
                 <div className="w-full text-center">
@@ -69,7 +76,7 @@ const ProfilePageLayout = ({
                                 ]}
                             />
                         </div>
-                        <div className="flex justify-center items-center mt-2">
+                        <div className="flex justify-center items-center mt-2 pb-10">
                             <StatsBlock
                                 subject="Mathematics"
                                 lessonsCompleted={21}
@@ -84,13 +91,7 @@ const ProfilePageLayout = ({
                         </div>
 
                         {/* ✅ ปุ่ม Setting */}
-                        <div className="flex justify-center items-center mt-6 mb-15">
-                            <Link href="/setting">
-                                <button className="bg-gray-700 hover:bg-gray-600 text-white px-6 py-2 rounded-full text-sm transition">
-                                    Setting
-                                </button>
-                            </Link>
-                        </div>
+
                     </div>
                 </div>
             </div>
