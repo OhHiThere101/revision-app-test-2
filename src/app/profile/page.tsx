@@ -22,7 +22,8 @@ const ProfilePageLayout = ({
 }: ProfilePageProps) => {
     return (
         <div className="max-h-screen flex flex-col text-white">
-            <div className="flex flex-row-reverse mt-3 mb-15 mr-3">
+            
+            <div className="flex flex-row-reverse mt-3 mr-3">
                 <Link href="/setting">
                     <button className="bg-gray-700 hover:bg-gray-600 text-white px-6 py-2 rounded-full text-sm transition">
                         Setting
