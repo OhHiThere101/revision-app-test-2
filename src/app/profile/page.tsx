@@ -23,15 +23,17 @@ const ProfilePageLayout = ({
     return (
         <div className="max-h-screen flex flex-col text-white">
             
-            <div className="flex flex-row-reverse mt-3 mr-3">
-                <Link href="/setting">
-                    <button className="bg-gray-700 hover:bg-gray-600 text-white px-6 py-2 rounded-full text-sm transition">
-                        Setting
-                    </button>
-                </Link>
-            </div>
             {/* Profile content */}
             <div className="flex-1 p-4 w-full">
+
+                <div className="flex flex-row-reverse">
+                    <Link href="/setting">
+                        <svg className="w-[33px] h-[33px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                          <path stroke="currentColor" strokeLinecap="round" strokeWidth="2" d="M20 6H10m0 0a2 2 0 1 0-4 0m4 0a2 2 0 1 1-4 0m0 0H4m16 6h-2m0 0a2 2 0 1 0-4 0m4 0a2 2 0 1 1-4 0m0 0H4m16 6H10m0 0a2 2 0 1 0-4 0m4 0a2 2 0 1 1-4 0m0 0H4"/>
+                        </svg>
+                    </Link>
+                </div>
+
                 <div className="w-full text-center">
                     <div className="w-50 h-50 mx-auto bg-gray-600 rounded-full mb-4" />
                     <div className="text-lg font-semibold">{displayName}</div>
