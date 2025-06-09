@@ -4,16 +4,17 @@ import ResponsiveBottomNavbar from "@/components/ResponsiveBottomNavbar";
 const CreatePage = () => {
   return (
 
-    <div className="pb-[45px]">
+    <div className="pb-[70px]">
 
-      <h1>Create/Custom generate page</h1>
+      <div className="min-h-screen max-h-screen bg-gradient-to-br from-green-300 via-green-400 to-purple-400 flex flex-col items-center rounded-lg m-4">
 
-      <ResponsiveBottomNavbar />
+      </div>
+
+
+    <ResponsiveBottomNavbar />
 
     </div>
-
   );
-}
-
+};
 
 export default CreatePage;
