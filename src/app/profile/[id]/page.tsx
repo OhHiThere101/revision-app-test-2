@@ -1,7 +1,10 @@
-import React from "react";
-import Link from "next/link"; // ✅ นำเข้า Link ที่ถูกต้อง
+"use client";
+
+import React, { useEffect, useState } from "react";
+import Link from "next/link";
 import ResponsiveBottomNavbar from "@/components/ResponsiveBottomNavbar";
 import StatsBlock from "@/components/StatsBlock";
+import { useParams } from "next/navigation";
 
 type ProfilePageProps = {
     displayName: string;
@@ -106,10 +109,39 @@ const ProfilePageLayout = ({
 };
 
 const ProfilePage = () => {
+    const [user, setUser] = useState<{ displayName: string; username: string } | null>(null);
+    const [loading, setLoading] = useState(true);
+    const params = useParams();
+
+    useEffect(() => {
+
+        const userId = params?.id;
+        if (!userId) return;
+        
+        fetch(`/api/users/${userId}`)
+            .then((res) => res.json())
+            .then((data) => {
+                setUser({
+                    displayName: data.displayName || "Unknown",
+                    username: data.username || "unknown",
+                });
+                setLoading(false);
+            })
+            .catch(() => setLoading(false));
+    }, []);
+
+    if (loading) {
+        return <div className="text-white p-8">Loading...</div>;
+    }
+
+    if (!user) {
+        return <div className="text-white p-8">User not found.</div>;
+    }
+
     return (
         <ProfilePageLayout
-            displayName="tungtungtungsahur"
-            username="nigga5678"
+            displayName={user.displayName}
+            username={user.username}
             joinedDate="June 2025"
             rank={17}
             playtime={37}
