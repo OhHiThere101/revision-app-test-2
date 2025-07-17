@@ -47,7 +47,7 @@ const ProfilePageLayout = ({
                     <div className="mt-6 text-left">
                         <div className="flex justify-between items-center mb-2">
                             <span className="text-md font-semibold">Statistics</span>
-                            <Link href='/profile/subject_statistic' className="text-md font-semibold">view all</Link>
+                            <Link href='/profile/id/subject_statistic' className="text-md font-semibold">view all</Link>
                         </div>
                         <div className="grid grid-cols-2 gap-2">
                             <div className="bg-[#2a2a2e] rounded-xl p-3 text-center">
