@@ -1,34 +1,31 @@
 "use client";
 
-import { signIn } from 'next-auth/react'
-import { useState } from 'react'
+import React, { useState } from "react";
 
-const LoginPage = () => {
+const SignupPage = () => {
   
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  const [message, setMessage] = useState('')
   const [visibility, setVisibility] = useState(false)
 
-  async function handleSignIn(e: React.FormEvent) {
-    e.preventDefault();
-    const res = await signIn('credentials', {
-      redirect: false,
-      username,
-      password,
-    });
-    if (!res || res.error) {
-      alert('Invalid username or password');
-      return;
-    }
-    // Only redirect if login is successful
-    window.location.href = '/';
+  async function handleSignUp(e: React.FormEvent) {
+    e.preventDefault()
+    const res = await fetch('/api/auth/signup', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username, password }),
+    })
+    const data = await res.json()
+    if (res.ok) setMessage('Account created. You can sign in now.')
+    else setMessage(`Error: ${data.error}`)
   }
 
   return (
 
     <div className="max-h-screen flex flex-col justify-center items-center px-4">
-      <form className="w-full max-w-sm flex flex-col gap-6" onSubmit={handleSignIn}>
-        <h1 className="text-4xl font-bold text-white text-center mb-10 mt-8">Sign in</h1>
+      <form className="w-full max-w-sm flex flex-col gap-6" onSubmit={handleSignUp}>
+        <h1 className="text-4xl font-bold text-white text-center mb-10 mt-8">Sign up</h1>
 
         {/* Username */}
         <div className="relative mt-2">
@@ -78,7 +75,7 @@ const LoginPage = () => {
           {/* Show/hide password button */}
           <button
             type="button"
-            className="absolute right-2 top-1/3 -translate-y-1/2 text-gray-400 z-30"
+            className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 z-30"
             onClick={() => setVisibility((visibility) => !visibility)}
             tabIndex={-1}
             onMouseDown={e => e.preventDefault()}
@@ -98,22 +95,16 @@ const LoginPage = () => {
             }
           </button>
 
-          {/* Forgot Password link */}
-          <div className="flex justify-end">
-            <a href="#" className="text-gray-300 text-sm underline mt-1 hover:text-white">
-              Forgot Password?
-            </a>
-          </div>
         </div>
 
-        {/* Sign in button */}
+        {/* Sign up button */}
         <button type="submit" className="w-full bg-white text-gray-900 font-semibold py-2 rounded mt-2 text-lg hover:bg-gray-200 transition">
-          Sign in
+          Sign up
         </button>
 
         {/* Create account */}
-        <a href="/signup" className="block text-center text-white underline font-semibold text-lg mt-2 hover:text-gray-300">
-          Create an account.
+        <a href="#" className="block text-center text-white underline font-semibold text-lg mt-2 hover:text-gray-300">
+          Already Have an account? Login.
         </a>
       </form>
 
@@ -131,4 +122,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default SignupPage;
