@@ -4,7 +4,8 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import ResponsiveBottomNavbar from "@/components/ResponsiveBottomNavbar";
 import StatsBlock from "@/components/StatsBlock";
-import { useParams } from "next/navigation";
+import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 type ProfilePageProps = {
     displayName: string;
@@ -24,10 +25,8 @@ const ProfilePageLayout = ({
 }: ProfilePageProps) => {
     return (
         <div className="max-h-screen flex flex-col text-white">
-            
             {/* Profile content */}
             <div className="flex-1 p-4 w-full">
-
                 <div className="flex flex-row-reverse">
                     <Link href="/setting">
                         <svg className="w-[33px] h-[33px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
@@ -35,17 +34,15 @@ const ProfilePageLayout = ({
                         </svg>
                     </Link>
                 </div>
-
                 <div className="w-full text-center">
                     <div className="w-80 h-80 mx-auto bg-gray-600 rounded-full mb-4" />
                     <div className="text-[30px] font-semibold">{displayName}</div>
                     <div className="text-xs text-gray-500 mt-1">joined {joinedDate}</div>
-
                     {/* Statistics */}
                     <div className="mt-6 text-left">
                         <div className="flex justify-between items-center mb-2">
                             <span className="text-md font-semibold">Statistics</span>
-                            <Link href='/profile/id/subject_statistic' className="text-md font-semibold">view all</Link>
+                            <Link href={`/profile/${username}/subject_statistic`} className="text-md font-semibold">view all</Link>
                         </div>
 
                         <div className="grid grid-cols-2 gap-2">
@@ -94,34 +91,41 @@ const ProfilePageLayout = ({
     );
 };
 
+
+import { useParams } from "next/navigation";
+
 const ProfilePage = () => {
+    const { data: session, status } = useSession();
     const [user, setUser] = useState<{ displayName: string; username: string } | null>(null);
     const [loading, setLoading] = useState(true);
+    const router = useRouter();
     const params = useParams();
 
     useEffect(() => {
-
-        const userId = params?.id;
-        if (!userId) return;
-        
-        fetch(`/api/users/${userId}`)
-            .then((res) => res.json())
-            .then((data) => {
-                setUser({
-                    displayName: data.displayName || "Unknown",
-                    username: data.username || "unknown",
-                });
-                setLoading(false);
-            })
-            .catch(() => setLoading(false));
-    }, []);
+        if (status === "loading") return;
+        if (!session || !session.user?.name) {
+            setLoading(false);
+            return;
+        }
+        const username = session.user.name;
+        // Only redirect if the URL param does not match the session username
+        if (params?.username !== username) {
+            router.replace(`/profile/${username}`);
+            return;
+        }
+        setUser({
+            displayName: username,
+            username: username,
+        });
+        setLoading(false);
+    }, [session, status, router, params]);
 
     if (loading) {
         return <div className="text-white p-8">Loading...</div>;
     }
 
     if (!user) {
-        return <div className="text-white p-8">User not found.</div>;
+        return <div className="text-white p-8">User not found or not logged in.</div>;
     }
 
     return (
