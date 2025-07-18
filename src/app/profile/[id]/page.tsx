@@ -17,7 +17,6 @@ type ProfilePageProps = {
 
 const ProfilePageLayout = ({
     displayName,
-    username,
     joinedDate,
     rank,
     playtime,
@@ -38,9 +37,8 @@ const ProfilePageLayout = ({
                 </div>
 
                 <div className="w-full text-center">
-                    <div className="w-50 h-50 mx-auto bg-gray-600 rounded-full mb-4" />
-                    <div className="text-lg font-semibold">{displayName}</div>
-                    <div className="text-sm text-gray-400">{username}</div>
+                    <div className="w-80 h-80 mx-auto bg-gray-600 rounded-full mb-4" />
+                    <div className="text-[30px] font-semibold">{displayName}</div>
                     <div className="text-xs text-gray-500 mt-1">joined {joinedDate}</div>
 
                     {/* Statistics */}
@@ -49,42 +47,30 @@ const ProfilePageLayout = ({
                             <span className="text-md font-semibold">Statistics</span>
                             <Link href='/profile/id/subject_statistic' className="text-md font-semibold">view all</Link>
                         </div>
+
                         <div className="grid grid-cols-2 gap-2">
-                            <div className="bg-[#2a2a2e] rounded-xl p-3 text-center">
-                                <div className="text-sm text-gray-400">Rank</div>
-                                <div className="text-xl font-bold">{rank}</div>
+                            <div className="border-[3px] border-[#39BEB9] rounded-xl p-3 text-center">
+                                <div className="text-[15px] text-gray-400">Rank</div>
+                                <div className="text-[35px] font-bold">{rank}</div>
                             </div>
-                            <div className="bg-[#2a2a2e] rounded-xl p-3 text-center">
-                                <div className="text-sm text-gray-400">Playtime</div>
-                                <div className="text-xl font-bold">{playtime} hrs</div>
+                            <div className="border-[3px] border-[#F2AD22] rounded-xl p-3 text-center">
+                                <div className="text-[15px] text-gray-400">Playtime</div>
+                                <div className="text-[35px] font-bold">{playtime} hrs</div>
                             </div>
-                            <div className="bg-[#2a2a2e] rounded-xl p-3 text-center">
-                                <div className="text-sm text-gray-400">Placeholder</div>
-                                <div className="text-xl font-bold">123</div>
+                            <div className="border-[3px] border-[#5B64AF] rounded-xl p-3 text-center">
+                                <div className="text-[15px] text-gray-400">Placeholder</div>
+                                <div className="text-[35px] font-bold">123</div>
                             </div>
-                            <div className="bg-[#2a2a2e] rounded-xl p-3 text-center">
-                                <div className="text-sm text-gray-400">Current session</div>
-                                <div className="text-xl font-bold">{currentsession} mins</div>
+                            <div className="border-[3px] border-[#F47621] rounded-xl p-3 text-center">
+                                <div className="text-[15px] text-gray-400">Current session</div>
+                                <div className="text-[35px] font-bold">{currentsession} mins</div>
                             </div>
                         </div>
 
                         {/* Stats Blocks */}
-                        <div className="flex justify-center items-center mt-2">
-                            <StatsBlock
-                                subject="Mathematics"
-                                lessonsCompleted={21}
-                                mistakes={34}
-                                accuracy={84}
-                                topics={[
-                                    { name: "Algebra", count: 1, percent: 0, color: "bg-purple-500" },
-                                    { name: "Geometry", count: 1, percent: 0, color: "bg-green-400" },
-                                    { name: "Quadratic", count: 1, percent: 0, color: "bg-pink-400" },
-                                ]}
-                            />
-                        </div>
                         <div className="flex justify-center items-center mt-2 pb-10">
                             <StatsBlock
-                                subject="Mathematics"
+                                subject="dashboard"
                                 lessonsCompleted={21}
                                 mistakes={34}
                                 accuracy={84}

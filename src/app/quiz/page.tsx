@@ -26,8 +26,8 @@ const QuizPage = () => {
             key={choice.label}
             type="button"
             onClick={() => setSelected(choice.label)}
-            className={`flex flex-row items-center justify-start rounded-[6px] shadow-md p-2 transition-colors
-              bg-gradient-to-r from-[#2A2930] to-[#2B2647]
+            className={`flex flex-row items-center justify-start rounded-[6px] shadow-md p-2
+              bg-[#39BEB9]
               ${selected === choice.label ? "ring-2 ring-[#58CA88] bg-[#23232a]" : ""}
             `}
           >
