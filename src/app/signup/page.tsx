@@ -24,6 +24,9 @@ const SignupPage = () => {
   return (
 
     <div className="max-h-screen flex flex-col justify-center items-center px-4">
+
+      {message && (<div className="mt-4 text-center text-white">{message}</div>)}
+
       <form className="w-full max-w-sm flex flex-col gap-6" onSubmit={handleSignUp}>
         <h1 className="text-4xl font-bold text-white text-center mb-10 mt-8">Sign up</h1>
 
@@ -103,11 +106,13 @@ const SignupPage = () => {
         </button>
 
         {/* Create account */}
-        <a href="#" className="block text-center text-white underline font-semibold text-lg mt-2 hover:text-gray-300">
+        <a href="/login" className="block text-center text-white underline font-semibold text-lg mt-2 hover:text-gray-300">
           Already Have an account? Login.
         </a>
       </form>
 
+      {/* Bottom icons */}
+      
       {/* Footer */}
       <div className="mt-16 text-gray-400 text-sm text-center space-y-1">
         <div>
