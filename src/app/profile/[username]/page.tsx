@@ -18,6 +18,7 @@ type ProfilePageProps = {
 
 const ProfilePageLayout = ({
     displayName,
+    username,
     joinedDate,
     rank,
     playtime,
