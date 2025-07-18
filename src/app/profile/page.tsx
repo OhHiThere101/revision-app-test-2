@@ -10,7 +10,7 @@ const ProfileRedirect = () => {
 
     useEffect(() => {
         if (status === "loading") return;
-        if (!session || !session.user?.name) return;
+        if (!session || !session.user?.name) return(router.replace('/login'));
         router.replace(`/profile/${session.user.name}`);
     }, [session, status, router]);
 
