@@ -69,7 +69,7 @@ export default function ResponsiveBottomNavbar() {
 
 
   return (
-    <>
+    <div>
       {/* Loader overlay */}
       <div
         ref={loaderRef}
@@ -86,7 +86,7 @@ export default function ResponsiveBottomNavbar() {
       </div>
 
       {/* Navbar */}
-      <nav className="fixed bottom-0 left-0 z-50 w-full border-t-[2px] border-navigation-border bg-navigation-bg flex justify-around items-center h-[70px] px-8">
+      <nav className={`fixed bottom-0 left-0 z-50 w-full border-t-[2px] border-navigation-border bg-navigation-bg flex justify-around items-center px-8 transition-all duration-300 ${scrolled ? "h-[45px]" : "h-[70px]"}`}>
         <a
           href="/"
           onClick={(e) => handleClick("/", e)}
@@ -119,10 +119,10 @@ export default function ResponsiveBottomNavbar() {
               xmlns="http://www.w3.org/2000/svg"
               aria-hidden="true"
             >
-              <path d="m4 12 8-8 8 8M6 10.5V19a1 1 0 001 1h3v-3a1 1 0 011-1h2a1 1 0 011 1v3h3a1 1 0 001-1v-8.5" />
+              <path d="m4 12 8-8 8 8M6 10.5V19a1 1 0 001 1h3v-3a1 1 0 011-1h2a1 1 0 011 1v3h3a1 1 0 0 0 1-1v-8.5" />
             </svg>
           )}
-          Home
+          {!scrolled && <span>Home</span>}
         </a>
 
         <a
@@ -160,7 +160,7 @@ export default function ResponsiveBottomNavbar() {
               <path d="M12 7.757v8.486M7.757 12h8.486M21 12a9 9 0 11-18 0 9 9 0 0118 0Z" />
             </svg>
           )}
-          Generate
+          {!scrolled && <span>Generate</span>}
         </a>
 
         <a
@@ -195,13 +195,13 @@ export default function ResponsiveBottomNavbar() {
               xmlns="http://www.w3.org/2000/svg"
               aria-hidden="true"
             >
-              <path d="M12 21a9 9 0 110-18 9 9 0 010 18Zm3-11a3 3 0 11-6 0 3 3 0 016 0Z" />
-              <path d="M13 16h-2a3.987 3.987 0 00-3.951 3.512A8.948 8.948 0 0012 21a8.949 8.949 0 004.951-1.488A3.987 3.987 0 0013 16z" />
+              <path d="M12 21a9 9 0 110-18 9 9 0 010 18Zm3-11a3 3 0 11-6 0 3 3 0 0 1 6 0Z" />
+              <path d="M13 16h-2a3.987 3.987 0 00-3.951 3.512A8.948 8.948 0 0012 21a8.949 8.949 0 0 0 4.951-1.488A3.987 3.987 0 0013 16z" />
             </svg>
           )}
-          Profile
+          {!scrolled && <span>Profile</span>}
         </a>
       </nav>
-    </>
+    </div>
   );
 }
