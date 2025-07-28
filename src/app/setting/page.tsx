@@ -3,9 +3,10 @@ import ResponsiveBottomNavbar from "@/components/ResponsiveBottomNavbar";
 import Footer from "@/components/Footer";
 
 import { useState } from "react"
+import { useSession } from "next-auth/react"
 
-
-export default function SettingsPage() {
+function SettingsPage() {
+    const { data: session } = useSession();
     const [notification, setNotification] = useState(true)
     const [newsletters, setNewsletters] = useState(false)
     const [specialOffers, setSpecialOffers] = useState(true)
@@ -35,7 +36,7 @@ export default function SettingsPage() {
                     ))}
                 </div>
 
-                {showpasswordModal && <PasswordModal onClose={() => setpasswordModal(false)} />}
+                {showpasswordModal && <PasswordModal onClose={() => setpasswordModal(false)} username={session?.user?.name ?? undefined} />}
 
 
                 <div className="mt-6 rounded-lg mx-4 shadow-sm divide-y">
@@ -49,6 +50,8 @@ export default function SettingsPage() {
         </div>
     )
 }
+
+export default SettingsPage;
 
 function ToggleRow({ label, value, onChange }: { label: string, value: boolean, onChange: (v: boolean) => void }) {
     return (
@@ -74,7 +77,46 @@ function BottomIcon({ label, icon, active }: { label: string, icon: string, acti
     )
 }
 
-function PasswordModal({ onClose }: { onClose: () => void }) {
+function PasswordModal({ onClose, username }: { onClose: () => void, username?: string }) {
+    const [oldPassword, setOldPassword] = useState("");
+    const [newPassword, setNewPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+    const [loading, setLoading] = useState(false);
+
+    const handleChangePassword = async () => {
+        if (!username) {
+            alert("No user session found.");
+            return;
+        }
+        if (!oldPassword || !newPassword || !confirmPassword) {
+            alert("Please fill in all fields.");
+            return;
+        }
+        if (newPassword !== confirmPassword) {
+            alert("New password and confirm password do not match.");
+            return;
+        }
+        setLoading(true);
+        try {
+            const res = await fetch("/api/auth/change-password", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ username, oldPassword, newPassword })
+            });
+            const data = await res.json();
+            if (!res.ok) {
+                alert(data.error || "Failed to change password");
+            } else {
+                alert("Password changed successfully!");
+                onClose();
+            }
+        } catch (e) {
+            alert("An error occurred. Please try again.");
+        } finally {
+            setLoading(false);
+        }
+    };
+
     return (
         <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
             <div className="bg-[#2f3136] w-[400px] p-6 rounded-lg shadow-lg relative">
@@ -85,25 +127,30 @@ function PasswordModal({ onClose }: { onClose: () => void }) {
                 <p className="text-sm text-gray-300 mb-5">Enter your current password and a new password.</p>
 
                 <div className="space-y-4">
-                    <Input label="Current Password" />
-                    <Input label="New Password" />
-                    <Input label="Confirm New Password" />
+                    <Input label="Current Password" value={oldPassword} onChange={setOldPassword} />
+                    <Input label="New Password" value={newPassword} onChange={setNewPassword} />
+                    <Input label="Confirm New Password" value={confirmPassword} onChange={setConfirmPassword} />
                 </div>
 
                 <div className="flex justify-end space-x-2 mt-6">
-                    <button onClick={onClose} className="bg-gray-600 hover:bg-gray-500 px-4 py-2 rounded text-white">Cancel</button>
-                    <button className="bg-indigo-500 hover:bg-indigo-600 px-4 py-2 rounded text-white">Done</button>
+                    <button onClick={onClose} className="bg-gray-600 hover:bg-gray-500 px-4 py-2 rounded text-white" disabled={loading}>Cancel</button>
+                    <button onClick={handleChangePassword} className="bg-indigo-500 hover:bg-indigo-600 px-4 py-2 rounded text-white" disabled={loading}>{loading ? "Saving..." : "Done"}</button>
                 </div>
             </div>
         </div>
     )
 }
 
-function Input({ label }: { label: string }) {
+function Input({ label, value, onChange }: { label: string, value: string, onChange: (v: string) => void }) {
     return (
         <div className="flex flex-col">
             <label className="text-sm text-gray-300 mb-1">{label}</label>
-            <input type="password" className="bg-[#202225] rounded px-3 py-2 text-white outline-none focus:ring-2 focus:ring-blue-500" />
+            <input
+                type="password"
+                className="bg-[#202225] rounded px-3 py-2 text-white outline-none focus:ring-2 focus:ring-blue-500"
+                value={value}
+                onChange={e => onChange(e.target.value)}
+            />
         </div>
     )
 }
