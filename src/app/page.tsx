@@ -69,9 +69,9 @@ const HomePage = () => {
               </div>
 
               <div className="">
-                <p className="text-green-500 text-md">69% Completed</p>
+                <p className="text-[#F2AD22] text-md">69% Completed</p>
                 <div className="rounded-full h-3 my-[1px] bg-gray-700">
-                  <div className="bg-linear-to-r from-[#58CA88] to-[#BC48FF] h-3 rounded-full w-[69%]"></div>
+                  <div className="bg-[#F2AD22] h-3 rounded-full w-[69%]"></div>
                 </div>
               </div>
               
@@ -96,9 +96,9 @@ const HomePage = () => {
               </div>
 
               <div>
-                <p className="text-green-500 text-md">13% Completed</p>
+                <p className="text-[#F2AD22] text-md">13% Completed</p>
                 <div className="bg-gray-200 rounded-full h-3 my-[1px] dark:bg-gray-700">
-                  <div className="bg-linear-to-r from-[#58CA88] to-[#BC48FF] h-3 rounded-full w-[13%]"></div>
+                  <div className="bg-[#F2AD22] h-3 rounded-full w-[13%]"></div>
                 </div>
               </div>
               
